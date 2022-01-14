@@ -24,7 +24,10 @@
 
   <script>
     const sc = document.querySelector("#snippet");
-    sc.innerText = `window.open('${window.location.protocol}//${window.location.host}/book?c=' + btoa(document.querySelector('#interaction').src), '_blank').focus();`;
+    if (window.location.pathname !== "/")
+      sc.innerText = `window.open('${window.location.protocol}//${window.location.host}/${window.location.pathname}/book?c=' + btoa(document.querySelector('#interaction').src), '_blank').focus();`;
+    else
+      sc.innerText = `window.open('${window.location.protocol}//${window.location.host}/book?c=' + btoa(document.querySelector('#interaction').src), '_blank').focus();`;
   </script>
 </body>
 
