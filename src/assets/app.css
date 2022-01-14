@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .button {
+    @apply mt-2 inline-flex items-center px-4 py-2 font-semibold leading-6 text-sm shadow rounded-lg text-white bg-slate-500 transition ease-in-out duration-150 text-center justify-center;
+  }
+
+  .smallPrint {
+    @apply text-gray-500 font-mono text-xs;
+  }
+}

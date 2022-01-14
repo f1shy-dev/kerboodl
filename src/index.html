@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kerboodl Beta</title>
+  <link rel="stylesheet" href="assets/output.css" />
+</head>
+
+<body>
+  <div class="bg-gray-50 h-screen w-screen flex flex-col justify-center">
+    <div class="p-6 bg-white shadow-xl sm:max-w-lg sm:mx-auto sm:rounded-lg sm:px-10">
+      <div class="max-w-md mx-auto flex flex-col items-center text-center">
+        <span class="font-mono text-xl font-bold">kerboodl</span>
+        <span class="font-mono text-gray-500 text-xs mt-2">To get started, open a book on kerboodle and run this
+          javascript
+          snippet, which will open a page to download the book:</span>
+        <p class="font-mono text-gray-50 bg-slate-700 rounded-md p-3 text-xs mt-2 text-left" id="snippet"></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const sc = document.querySelector("#snippet");
+    sc.innerText = `window.open('${window.location.protocol}//${window.location.host}/book?c=' + btoa(document.querySelector('#interaction').src), '_blank').focus();`;
+  </script>
+</body>
+
+</html>
