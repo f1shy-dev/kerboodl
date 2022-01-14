@@ -1,4 +1,4 @@
-## Kerboodl
+## 📚&nbsp;Kerboodl
 A simple way to download PDF books from kerboodle.
 
 ## Usage
