@@ -15,8 +15,7 @@
       <div class="max-w-md mx-auto flex flex-col items-center text-center">
         <span class="font-mono text-xl font-bold">kerboodl</span>
         <span class="font-mono text-gray-500 text-xs mt-2">To get started, open a book on kerboodle and run this
-          javascript
-          snippet, which will open a page to download the book:</span>
+          javascript snippet, which will open a page to download the book:</span>
         <div class="flex w-full mt-2 justify-center">
           <div class="bg-slate-800 rounded-lg px-3 pt-3 py-2 max-w-85">
             <p class="font-mono text-gray-50 text-xs text-left whitespace-nowrap overflow-x-scroll pb-1.5" id="snippet">
@@ -44,11 +43,13 @@
 
   <script>
     const sc = document.querySelector("#snippet");
-    const loc = `${window.location.protocol}//${window.location.host}${(window.location.pathname !== "/") ? window.location.pathname : "/"}`;
+    const loc = `${window.location.protocol}//${window.location.host}${window.location.pathname !== "/" ? window.location.pathname : "/"
+      }`;
     sc.innerText = `window.open('${loc}book?c='+btoa(document.querySelector('#interaction').src),'_blank').focus();`;
 
     document.querySelector(".copy").addEventListener("click", () => {
-      if (document.body.createTextRange) { // ms
+      if (document.body.createTextRange) {
+        // ms
         var range = document.body.createTextRange();
         range.moveToElementText(sc);
         range.select();
