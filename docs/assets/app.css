@@ -2,6 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+/* width */
+::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  @apply rounded-b-md bg-slate-800;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  @apply rounded-md bg-slate-100;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-slate-400;
+}
+
 @layer components {
   .button {
     @apply mt-2 inline-flex items-center px-4 py-2 font-semibold leading-6 text-sm shadow rounded-lg text-white bg-slate-500 transition ease-in-out duration-150 text-center justify-center;
@@ -9,5 +29,11 @@
 
   .smallPrint {
     @apply text-gray-500 font-mono text-xs;
+  }
+}
+
+@layer utilities {
+  .max-w-85 {
+    max-width: 85%;
   }
 }

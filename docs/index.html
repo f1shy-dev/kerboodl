@@ -11,23 +11,57 @@
 
 <body>
   <div class="bg-gray-50 h-screen w-screen flex flex-col justify-center">
-    <div class="p-6 bg-white shadow-xl sm:max-w-lg sm:mx-auto sm:rounded-lg sm:px-10">
+    <div class="p-6 bg-white shadow-xl sm:max-w-lg sm:mx-auto sm:rounded-lg sm:px-6">
       <div class="max-w-md mx-auto flex flex-col items-center text-center">
         <span class="font-mono text-xl font-bold">kerboodl</span>
         <span class="font-mono text-gray-500 text-xs mt-2">To get started, open a book on kerboodle and run this
           javascript
           snippet, which will open a page to download the book:</span>
-        <p class="font-mono text-gray-50 bg-slate-700 rounded-md p-3 text-xs mt-2 text-left" id="snippet"></p>
+        <div class="flex w-full mt-2 justify-center">
+          <div class="bg-slate-800 rounded-lg px-3 pt-3 py-2 max-w-85">
+            <p class="font-mono text-gray-50 text-xs text-left whitespace-nowrap overflow-x-scroll pb-1.5" id="snippet">
+            </p>
+          </div>
+          <div
+            class="bg-indigo-500 hover:bg-indigo-400 transition-colors rounded-lg ml-2 p-2 text-gray-50 flex items-center copy">
+            <svg focusable="false" data-prefix="fas" data-icon="copy" role="img" xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 448 512" class="w-4 h-4">
+              <path fill="currentColor"
+                d="M320 448v40c0 13.255-10.745 24-24 24H24c-13.255 0-24-10.745-24-24V120c0-13.255 10.745-24 24-24h72v296c0 30.879 25.121 56 56 56h168zm0-344V0H152c-13.255 0-24 10.745-24 24v368c0 13.255 10.745 24 24 24h272c13.255 0 24-10.745 24-24V128H344c-13.2 0-24-10.8-24-24zm120.971-31.029L375.029 7.029A24 24 0 0 0 358.059 0H352v96h96v-6.059a24 24 0 0 0-7.029-16.97z">
+              </path>
+            </svg>
+          </div>
+        </div>
       </div>
+    </div>
+    <div class="fixed bottom-4 w-screen text-center text-xs font-mono text-gray-600">
+      <a class="hover:text-indigo-500 transition" href="https://github.com/f1shy-dev/kerboodl">Github</a>
+      <span> - </span>
+      <a class="hover:text-indigo-500 transition"
+        href="https://github.com/f1shy-dev/kerboodl/blob/master/DISCLAIMER.md">Disclaimer</a>
     </div>
   </div>
 
   <script>
     const sc = document.querySelector("#snippet");
-    if (window.location.pathname !== "/")
-      sc.innerText = `window.open('${window.location.protocol}//${window.location.host}${window.location.pathname}book?c=' + btoa(document.querySelector('#interaction').src), '_blank').focus();`;
-    else
-      sc.innerText = `window.open('${window.location.protocol}//${window.location.host}/book?c=' + btoa(document.querySelector('#interaction').src), '_blank').focus();`;
+    const loc = `${window.location.protocol}//${window.location.host}${(window.location.pathname !== "/") ? window.location.pathname : "/"}`;
+    sc.innerText = `window.open('${loc}book?c='+btoa(document.querySelector('#interaction').src),'_blank').focus();`;
+
+    document.querySelector(".copy").addEventListener("click", () => {
+      if (document.body.createTextRange) { // ms
+        var range = document.body.createTextRange();
+        range.moveToElementText(sc);
+        range.select();
+      } else if (window.getSelection) {
+        var selection = window.getSelection();
+        var range = document.createRange();
+        range.selectNodeContents(sc);
+        selection.removeAllRanges();
+        selection.addRange(range);
+      }
+
+      navigator.clipboard.writeText(sc.innerText);
+    });
   </script>
 </body>
 
