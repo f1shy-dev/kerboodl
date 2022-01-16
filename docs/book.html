@@ -50,9 +50,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="sm:flex sm:gap-1">
-                        <div class="button bg-indigo-500 hover:bg-indigo-400 w-full">Download PDF</div>
-                        <div class="button bg-slate-800 hover:bg-slate-600 w-full mt-2">View in Browser</div>
+                    <div class="sm:flex sm:gap-1 dlButtons">
+                        <div class="button bg-indigo-500 hover:bg-indigo-400 w-full dlPDF">Download PDF</div>
+                        <!-- <div class="button bg-yellow-500 hover:bg-yellow-400 w-full mt-2 dlZIP">Download ZIP</div> -->
+                    </div>
+                    <div class="progress flex-col hidden">
+                        <div class="mt-2 w-full bg-gray-200 h-1 rounded-md">
+                            <div class="bg-indigo-500 h-1 rounded-md progBar" style="width: 1%"></div>
+                        </div>
+                        <span class="text-left font-mono text-gray-500 text-xxs mt-1 font-bold progText"></span>
                     </div>
                 </div>
             </div>
@@ -64,7 +70,7 @@
                 href="https://github.com/f1shy-dev/kerboodl/blob/master/DISCLAIMER.md">Disclaimer</a>
         </div>
     </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
     <script src="assets/app.js"></script>
 </body>
 

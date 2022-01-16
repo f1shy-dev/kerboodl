@@ -36,4 +36,8 @@
   .max-w-85 {
     max-width: 85%;
   }
+  .text-xxs {
+    font-size: 0.6rem;
+    /* line-height: 0.75rem; */
+  }
 }
