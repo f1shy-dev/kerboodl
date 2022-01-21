@@ -7,9 +7,10 @@ const innerText = (i, t) => (qs(i).innerText = t);
 const _ = undefined;
 const error = (e) => {
   console.log(e);
-  hide([".loading", ".title", ".bookContainer"]);
+  hide([".title", ".bookContainer"]);
   show(".error");
 };
+const pfetch = frames[0].fetch.bind(frames[0]);
 
 const downloadPDF = async (pageData, bookName) => {
   hide([".dlButtons"]);
@@ -27,7 +28,7 @@ const downloadPDF = async (pageData, bookName) => {
   doc.save(`${bookName}.pdf`);
 };
 
-const url2b64 = (url, index, array) =>
+frames[0].url2b64_host = (url, index, array) =>
   new Promise((resolve, reject) => {
     var img = new Image();
     img.crossOrigin = "Anonymous";
@@ -47,6 +48,8 @@ const url2b64 = (url, index, array) =>
     img.src = url;
   });
 
+const url2b64 = async (a, b, c) => frames[0].url2b64_host(a, b, c);
+
 const updateProgress = (rawP, text, dt, force) => {
   const percent = Math.ceil(rawP);
 
@@ -62,13 +65,17 @@ const updateProgress = (rawP, text, dt, force) => {
 
 const sanitise = async () => {
   // convert bookURL from query into url for kerboodle book data
-  const bookURL = atob(new URLSearchParams(window.location.search).get("c"));
+  const bookURL = document.querySelector("#interaction").src;
   const split = bookURL.split("/");
   const dataURL = split.slice(0, split.length - 1).join("/") + "/data.js";
 
   // get the book data and parse it as JSON
-  const rawData = await (await fetch(dataURL)).text();
-  const trimmed = rawData.substring(11, rawData.length - 1);
+  const rawData = await (await pfetch(dataURL)).text();
+  window.rD = rawData;
+  const trimmed = rawData.substring(
+    rawData.indexOf("{"),
+    rawData.lastIndexOf(";")
+  );
   const data = JSON.parse(trimmed);
 
   // read the XML file inside the JSON, and sanitise the page
@@ -84,7 +91,7 @@ const sanitise = async () => {
   const title = doc.querySelector("title").innerHTML;
   innerText(".bookTitle", title);
   innerText(".bookID", "#" + doc.querySelector("ID").innerHTML);
-  hide(".loading");
+
   show(".bookContainer");
   qs(".dlPDF").addEventListener("click", () =>
     downloadPDF(pageData, title).catch(error)

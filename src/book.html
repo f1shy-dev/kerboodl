@@ -1,0 +1,41 @@
+<div class="bg-[#00000060] h-screen w-screen flex flex-col justify-center z-50 fixed top-0 left-0">
+    <div class="p-6 bg-white shadow-xl sm:max-w-lg sm:mx-auto sm:rounded-lg sm:px-10">
+        <div class="max-w-md mx-auto flex flex-col items-center text-center">
+            <span class="font-mono text-xl font-bold title">kerboodl</span>
+
+            <div class="error hidden flex-col items-center text-red-600">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
+                    </path>
+                    <line x1="12" y1="9" x2="12" y2="13"></line>
+                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+                <p class="font-mono text-sm font-semibold mt-2">
+                    Sorry, there was a problem processing your book.
+                </p>
+            </div>
+            <div class="bookContainer flex-col hidden">
+                <div class="book">
+                    <div class="bg-gray-200 px-5 py-4 rounded-md mt-3 flex text-left items-center">
+                        <img class="w-16 rounded-sm bookImg h-min"></img>
+                        <div class="flex flex-col ml-4 justify-center">
+                            <span class="text-gray-700 font-mono text-sm font-bold bookTitle">Loading</span>
+                            <span class="smallPrint"><b>ID: </b><span class="bookID"></span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="sm:flex sm:gap-1 dlButtons">
+                    <div class="button bg-indigo-500 hover:bg-indigo-400 w-full dlPDF">Download PDF</div>
+                    <!-- <div class="button bg-yellow-500 hover:bg-yellow-400 w-full mt-2 dlZIP">Download ZIP</div> -->
+                </div>
+                <div class="progress flex-col hidden">
+                    <div class="mt-2 w-full bg-gray-200 h-1 rounded-md">
+                        <div class="bg-indigo-500 h-1 rounded-md progBar" style="width: 1%"></div>
+                    </div>
+                    <span class="text-left font-mono text-gray-500 text-xxs mt-1 font-bold progText"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
