@@ -68,8 +68,8 @@ const sanitise = async () => {
 
   // get the book data and parse it as JSON
   const rawData = await (await fetch(dataURL)).text();
-  const trimmed = rawData.substring(11, rawData.length - 1);
-  const data = JSON.parse(trimmed);
+  const data = JSON.parse(rawData.replace("ajaxData =", "").replace("};", "}"));
+
 
   // read the XML file inside the JSON, and sanitise the page
   const parser = new DOMParser();
