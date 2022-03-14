@@ -46,7 +46,8 @@ const url2b64 = (url, index, array) =>
     };
     img.onerror = () => reject(new Error("image load failed"));
     img.src = window.useProxy
-      ? "https://kerboodlcors.f1shylabs.workers.dev/" + url.split("/")[3]
+      ? "https://kerboodlcors.f1shylabs.workers.dev/" +
+        url.split("/").splice(3).join("/")
       : url;
   });
 
