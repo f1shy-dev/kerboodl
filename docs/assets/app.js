@@ -1,5 +1,6 @@
 // helper things to reduce long repeated lines
 const qs = (q) => document.querySelector(q);
+const qsA = (q) => document.querySelectorAll(q);
 const show = (h, i) =>
   [h].flat().forEach((g) => (qs(g).style.display = i || "flex"));
 const hide = (h) => show(h, "none");
@@ -92,4 +93,6 @@ const sanitise = async () => {
   // qs(".dlZIP").addEventListener("click", () => download(pageData, "zip", "title"));
 };
 
+window.useProxy = new URLSearchParams(window.location.search).get("useProxy") === 'true';
+if (window.useProxy) Array.from(qsA(".hideUP")).forEach(i => (i.hidden = true))
 sanitise().catch(error);
