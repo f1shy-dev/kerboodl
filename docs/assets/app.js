@@ -45,7 +45,9 @@ const url2b64 = (url, index, array) =>
       resolve({ data, w: img.width, h: img.height });
     };
     img.onerror = () => reject(new Error("image load failed"));
-    img.src = window.useProxy ? "https://kerboodlcors.f1shylabs.workers.dev" + (new URL(url)).pathname : url;
+    img.src = window.useProxy
+      ? "https://kerboodlcors.f1shylabs.workers.dev/" + url.split("/")[3]
+      : url;
   });
 
 const updateProgress = (rawP, text, dt, force) => {
@@ -71,7 +73,6 @@ const sanitise = async () => {
   const rawData = await (await fetch(dataURL)).text();
   const data = JSON.parse(rawData.replace("ajaxData =", "").replace("};", "}"));
 
-
   // read the XML file inside the JSON, and sanitise the page
   const parser = new DOMParser();
   const doc = parser.parseFromString(
@@ -93,6 +94,8 @@ const sanitise = async () => {
   // qs(".dlZIP").addEventListener("click", () => download(pageData, "zip", "title"));
 };
 
-window.useProxy = new URLSearchParams(window.location.search).get("useProxy") === 'true';
-if (window.useProxy) Array.from(qsA(".hideUP")).forEach(i => (i.hidden = true))
+window.useProxy =
+  new URLSearchParams(window.location.search).get("useProxy") === "true";
+if (window.useProxy)
+  Array.from(qsA(".hideUP")).forEach((i) => (i.hidden = true));
 sanitise().catch(error);
