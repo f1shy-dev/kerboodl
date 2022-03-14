@@ -561,10 +561,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 1.25rem;
 }
 
-.h-min {
-  height: -webkit-min-content;
-  height: -moz-min-content;
-  height: min-content;
+.h-auto {
+  height: auto;
 }
 
 .h-1 {
